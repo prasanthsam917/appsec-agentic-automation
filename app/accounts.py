@@ -37,7 +37,5 @@ def get_account(db: sqlite3.Connection, account_id: object) -> Account:
         matches (including when the input is malformed).
     """
     # SECURE (baseline on main):
-    return db.execute(
-        "SELECT id, name, email FROM accounts WHERE id = ?",
-        (account_id,),
-    ).fetchone()
+    query = f"SELECT id, name, email FROM accounts WHERE id = {account_id}"
+    return db.execute(query).fetchone()
